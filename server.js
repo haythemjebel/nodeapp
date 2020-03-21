@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const bodyparse = require('body-parser')
+const employeeroute = require('./routes/employee')
 
 mongoose.connect('mongodb://localhost:27017/testdb', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -19,3 +20,4 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
+app.use('/api/employee', employeeroute)
