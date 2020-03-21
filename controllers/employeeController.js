@@ -40,6 +40,14 @@ const storeEmp = (req, res, next) => {
         phone: req.body.phone,
         age: req.body.age
     })
+    if (req.files) {
+        let path = ''
+        req.files.forEach(function(files, index, arr) {
+            path = path + files.path + ','
+        })
+        path = path.substring(0, path.lastIndexOf(","))
+        employe.avatar = path
+    }
     employe.save()
         .then(response => {
             res.json({
